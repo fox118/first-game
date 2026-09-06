@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/FireSprite.tscn" id="2_firesprite"]
+[ext_resource type="Script" path="res://scripts/world/void_zone.gd" id="3_voidzone"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(960, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(160, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_void"]
+size = Vector2(1400, 40)
+
+[node name="TestRoom" type="Node2D"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(480, 150)
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+offset_left = 0.0
+offset_top = 130.0
+offset_right = 960.0
+offset_bottom = 170.0
+color = Color(0.22, 0.45, 0.28, 1)
+
+[node name="Platform1" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
+position = Vector2(300, 50)
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platform1"]
+offset_left = 220.0
+offset_top = 40.0
+offset_right = 380.0
+offset_bottom = 60.0
+color = Color(0.3, 0.32, 0.42, 1)
+
+[node name="Platform2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
+position = Vector2(650, 90)
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platform2"]
+offset_left = 570.0
+offset_top = 80.0
+offset_right = 730.0
+offset_bottom = 100.0
+color = Color(0.3, 0.32, 0.42, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(100, 100)
+
+[node name="FireSprite" parent="." instance=ExtResource("2_firesprite")]
+position = Vector2(450, 90)
+
+[node name="VoidZone" type="Area2D" parent="."]
+position = Vector2(480, 400)
+script = ExtResource("3_voidzone")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VoidZone"]
+shape = SubResource("RectangleShape2D_void")
+

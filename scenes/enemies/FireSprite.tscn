@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/fire_sprite.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/fire_sprite.png" id="2_sprite"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
+radius = 14.0
+
+[node name="FireSprite" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_sprite")
+
+[node name="HitArea" type="Area2D" parent="."]
+monitoring = true
+monitorable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("CircleShape2D_hit")
